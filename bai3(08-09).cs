@@ -2,21 +2,14 @@
 
 namespace OrderProcessing
 {
-    // ==========================================
-    // DISCOUNT CALCULATOR
-    // ==========================================
 
     public class DiscountCalculator
     {
-        // Overloading 1:
-        // Giam mac dinh 5%
         public decimal ApplyDiscount(decimal totalAmount)
         {
             return totalAmount * 0.95m;
         }
 
-        // Overloading 2:
-        // Giam theo phan tram tuy chinh
         public decimal ApplyDiscount(
             decimal totalAmount,
             double percentage)
@@ -33,8 +26,6 @@ namespace OrderProcessing
             return totalAmount - discount;
         }
 
-        // Overloading 3:
-        // Giam theo voucher tien mat
         public decimal ApplyDiscount(
             decimal totalAmount,
             decimal fixedVoucher,
@@ -64,10 +55,6 @@ namespace OrderProcessing
     }
 
 
-    // ==========================================
-    // DELIVERY SERVICE
-    // ==========================================
-
     public class DeliveryService
     {
         public string OrderId { get; set; }
@@ -81,17 +68,12 @@ namespace OrderProcessing
             DistanceKm = distanceKm;
         }
 
-        // Runtime Polymorphism
         public virtual decimal CalculateShippingFee()
         {
             return (decimal)DistanceKm * 5000m;
         }
     }
 
-
-    // ==========================================
-    // EXPRESS DELIVERY
-    // ==========================================
 
     public class ExpressDelivery : DeliveryService
     {
@@ -102,7 +84,6 @@ namespace OrderProcessing
         {
         }
 
-        // Override method cua DeliveryService
         public override decimal CalculateShippingFee()
         {
             decimal basicFee =
@@ -111,11 +92,6 @@ namespace OrderProcessing
             return basicFee * 1.5m + 20_000m;
         }
     }
-
-
-    // ==========================================
-    // ECO DELIVERY
-    // ==========================================
 
     public class EcoDelivery : DeliveryService
     {
@@ -126,7 +102,6 @@ namespace OrderProcessing
         {
         }
 
-        // Override method cua DeliveryService
         public override decimal CalculateShippingFee()
         {
             decimal basicFee =
@@ -141,20 +116,12 @@ namespace OrderProcessing
         }
     }
 
-
-    // ==========================================
-    // PROGRAM
-    // ==========================================
-
     class Program
     {
         static void Main(string[] args)
         {
             try
             {
-                // ======================================
-                // PHAN 1: METHOD OVERLOADING
-                // ======================================
 
                 Console.WriteLine("=================================");
                 Console.WriteLine("     METHOD OVERLOADING");
@@ -167,7 +134,6 @@ namespace OrderProcessing
                 decimal totalAmount =
                     decimal.Parse(Console.ReadLine());
 
-                // Overloading 1
                 decimal result1 =
                     calculator.ApplyDiscount(totalAmount);
 
@@ -177,7 +143,6 @@ namespace OrderProcessing
                     $"So tien sau giam: {result1:N0} VND"
                 );
 
-                // Overloading 2
                 Console.WriteLine();
                 Console.Write("Nhap phan tram muon giam: ");
                 double percentage =
@@ -193,7 +158,6 @@ namespace OrderProcessing
                     $"So tien sau giam {percentage}%: {result2:N0} VND"
                 );
 
-                // Overloading 3
                 Console.WriteLine();
                 Console.Write("Nhap gia tri voucher: ");
                 decimal voucher =
@@ -215,10 +179,6 @@ namespace OrderProcessing
                 );
 
 
-                // ======================================
-                // PHAN 2: METHOD OVERRIDING
-                // ======================================
-
                 Console.WriteLine();
                 Console.WriteLine("=================================");
                 Console.WriteLine("     METHOD OVERRIDING");
@@ -233,7 +193,6 @@ namespace OrderProcessing
                     double.Parse(Console.ReadLine());
 
 
-                // Tao 3 loai delivery
                 DeliveryService normalDelivery =
                     new DeliveryService(
                         orderId,
@@ -252,10 +211,6 @@ namespace OrderProcessing
                         distance
                     );
 
-
-                // ======================================
-                // HIEN THI PHI VAN CHUYEN
-                // ======================================
 
                 Console.WriteLine();
                 Console.WriteLine("=== PHI VAN CHUYEN ===");

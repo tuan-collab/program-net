@@ -2,19 +2,16 @@
 
 namespace PaymentGatewayDemo
 {
-    // Interface: kha nang thanh toan
     public interface IPayable
     {
         bool ProcessPayment(decimal amount);
     }
 
-    // Interface: kha nang hoan tien
     public interface IRefundable
     {
         bool ProcessRefund(decimal amount, string reason);
     }
 
-    // Abstract Class
     public abstract class PaymentGateway
     {
         public string TransactionId { get; private set; }
@@ -38,8 +35,6 @@ namespace PaymentGatewayDemo
         }
     }
 
-    // MomoPayment ke thua PaymentGateway
-    // va trien khai 2 interface
     public class MomoPayment : PaymentGateway, IPayable, IRefundable
     {
         public string PhoneNumber { get; set; }

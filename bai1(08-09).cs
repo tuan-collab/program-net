@@ -32,7 +32,6 @@ namespace BankAccountDemo
             }
         }
 
-        // So du: chi cho phep doc
         public decimal Balance
         {
             get
@@ -41,10 +40,8 @@ namespace BankAccountDemo
             }
         }
 
-        // Constructor
         public BankAccount(string accountHolder, decimal initialBalance)
         {
-            // Kiem tra ten chu tai khoan
             if (string.IsNullOrWhiteSpace(accountHolder))
             {
                 throw new ArgumentException(
@@ -52,7 +49,6 @@ namespace BankAccountDemo
                 );
             }
 
-            // Kiem tra so du ban dau
             if (initialBalance < MinimumBalance)
             {
                 throw new ArgumentException(
@@ -60,15 +56,12 @@ namespace BankAccountDemo
                 );
             }
 
-            // Tu dong cap so tai khoan
             AccountNumber = _nextAccountNumber++;
 
-            // Gan thong tin
             AccountHolder = accountHolder;
             _balance = initialBalance;
         }
 
-        // Nap tien
         public void Deposit(decimal amount)
         {
             if (amount <= 0)
@@ -81,10 +74,8 @@ namespace BankAccountDemo
             _balance += amount;
         }
 
-        // Rut tien
         public bool Withdraw(decimal amount)
         {
-            // So tien rut phai > 0
             if (amount <= 0)
             {
                 throw new ArgumentException(
@@ -92,7 +83,6 @@ namespace BankAccountDemo
                 );
             }
 
-            // So du sau khi rut khong duoc nho hon 50,000
             if (_balance - amount < MinimumBalance)
             {
                 return false;
@@ -118,7 +108,6 @@ namespace BankAccountDemo
         {
             try
             {
-                // Nhap thong tin tai khoan 1
                 Console.Write("Nhap ten chu tai khoan 1: ");
                 string name1 = Console.ReadLine();
 
@@ -127,7 +116,6 @@ namespace BankAccountDemo
 
                 BankAccount account1 = new BankAccount(name1, balance1);
 
-                // Nhap thong tin tai khoan 2
                 Console.Write("Nhap ten chu tai khoan 2: ");
                 string name2 = Console.ReadLine();
 
@@ -136,14 +124,10 @@ namespace BankAccountDemo
 
                 BankAccount account2 = new BankAccount(name2, balance2);
 
-                // Hien thi thong tin
                 Console.WriteLine("\n=== THONG TIN TAI KHOAN ===");
                 account1.DisplayInfo();
                 account2.DisplayInfo();
 
-                // ==========================
-                // DEPOSIT
-                // ==========================
 
                 Console.Write("Nhap so tien muon nap vao tai khoan 1: ");
                 decimal depositAmount = decimal.Parse(Console.ReadLine());
@@ -153,7 +137,6 @@ namespace BankAccountDemo
                 Console.WriteLine("Nap tien thanh cong!");
                 account1.DisplayInfo();
 
-                // WITHDRAW
 
                 Console.Write("Nhap so tien muon rut: ");
                 decimal withdrawAmount = decimal.Parse(Console.ReadLine());
@@ -172,7 +155,6 @@ namespace BankAccountDemo
                 }
 
                 account1.DisplayInfo();
-                // TEST EXCEPTION
                 Console.WriteLine("=== TEST TAI KHOAN KHONG HOP LE ===");
 
                 Console.Write("Nhap ten tai khoan 3: ");

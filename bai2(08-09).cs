@@ -34,21 +34,15 @@ namespace EmployeeHierarchy
         {
             BaseSalary = baseSalary;
         }
-
-        // Tinh thu nhap
         public virtual decimal CalculateIncome()
         {
             return BaseSalary;
         }
     }
-
-    // Manager ke thua Employee
-    // sealed: khong cho class khac ke thua Manager
     public sealed class Manager : Employee
     {
         public decimal ResponsibilityAllowance { get; set; }
 
-        // Constructor cua Manager
         public Manager(
             string id,
             string fullName,
@@ -60,7 +54,6 @@ namespace EmployeeHierarchy
             ResponsibilityAllowance = allowance;
         }
 
-        // Ghi de CalculateIncome()
         public override decimal CalculateIncome()
         {
             return BaseSalary + ResponsibilityAllowance;
@@ -71,9 +64,6 @@ namespace EmployeeHierarchy
     {
         static void Main(string[] args)
         {
-            // ==========================
-            // NHAP THONG TIN EMPLOYEE
-            // ==========================
 
             Console.WriteLine("=== NHAP THONG TIN EMPLOYEE ===");
 
@@ -97,10 +87,6 @@ namespace EmployeeHierarchy
                 employeeBirthYear,
                 employeeSalary
             );
-
-            // ==========================
-            // NHAP THONG TIN MANAGER
-            // ==========================
 
             Console.WriteLine();
             Console.WriteLine("=== NHAP THONG TIN MANAGER ===");
@@ -130,11 +116,6 @@ namespace EmployeeHierarchy
                 managerSalary,
                 allowance
             );
-
-            // ==========================
-            // HIEN THI THONG TIN
-            // ==========================
-
             Console.WriteLine();
             Console.WriteLine("=== THONG TIN EMPLOYEE ===");
 
@@ -153,10 +134,6 @@ namespace EmployeeHierarchy
             Console.WriteLine(
                 $"Thu nhap: {employee.CalculateIncome():N0} VND"
             );
-
-            // ==========================
-            // HIEN THI MANAGER
-            // ==========================
 
             Console.WriteLine();
             Console.WriteLine("=== THONG TIN MANAGER ===");
